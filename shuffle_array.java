@@ -1,22 +1,28 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+
+import java.util.Random;
 
 public class ArrayShuffle {
     public static void main(String[] args) {
         Integer[] originalArray = {1, 2, 3, 4, 5, 6, 7};
 
-        // Convert the array to a list
-        List<Integer> list = new ArrayList<>(Arrays.asList(originalArray));
-
-        // Shuffle the list
-        Collections.shuffle(list);
-
-        // Convert the shuffled list back to an array
-        Integer[] shuffledArray = list.toArray(new Integer[0]);
+        shuffleArray(originalArray);
 
         // Print the shuffled array
-        System.out.println(Arrays.toString(shuffledArray));
+        for (Integer value : originalArray) {
+            System.out.print(value + " ");
+        }
+    }
+
+    public static void shuffleArray(Integer[] array) {
+        Random random = new Random();
+
+        for (int i = array.length - 1; i > 0; i--) {
+            int j = random.nextInt(i + 1);
+
+            // Swap array[i] and array[j]
+            Integer temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
     }
 }
